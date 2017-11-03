@@ -1,5 +1,6 @@
 import React from 'react';
 
+// I initially attempted to make this modal stateless like the rest of the modals but I needed this modal to rerender when client added more favorites.
 class FavoritesModal extends React.Component {
   constructor(props) {
     super(props);
@@ -8,6 +9,7 @@ class FavoritesModal extends React.Component {
     };
     this.handleFavoritesUpdate = this.handleFavoritesUpdate.bind(this);
     this.handleAddFavorite = this.handleAddFavorite.bind(this);
+    this.handleSubmitUpdatedFavorites = this.handleSubmitUpdatedFavorites.bind(this);
   }
   // if there are no favorites when the modal renders handleAddFavorite is called to add a empty favorite
   componentWillMount() {
@@ -31,6 +33,12 @@ class FavoritesModal extends React.Component {
       modalFavorites: newState
     });
   }
+  // checks if user added a favorite before saving, if not it will remove the empty string that was added on componentWillMount
+  handleSubmitUpdatedFavorites() {
+    if (this.state.modalFavorites[0] !== '') {
+      this.props.updateFavorites(this.state.modalFavorites);
+    }
+  }
   render() {
     return (
       <div className="modal-content">
@@ -51,20 +59,22 @@ class FavoritesModal extends React.Component {
           </span>
           <div
             className="modal-closeButtonContainer"
-            onClick={() => this.props.hideFavoritesModal()}
+            onClick={() => this.props.handleToggleFavoritesModal()}
           >
             Close
             <button className="modal-closeButton">x</button>
           </div>
           <div className="modal-bottomButtons">
-            <div className="modal-cancelButton" onClick={() => this.props.hideFavoritesModal()}>
+            <div
+              className="modal-cancelButton"
+              onClick={() => this.props.handleToggleFavoritesModal()}
+            >
               Cancel
             </div>
             <div
               className="modal-saveButton"
               onClick={() => (
-                this.props.updateFavorites(this.state.modalFavorites),
-                this.props.hideFavoritesModal()
+                this.handleSubmitUpdatedFavorites(), this.props.handleToggleFavoritesModal()
               )}
             >
               Save

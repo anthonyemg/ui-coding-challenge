@@ -2,10 +2,10 @@ import React from 'react';
 
 const AddressModal = ({
   address,
-  updateAddress,
   handleUpdateAddress,
   handleSubmitUpdatedAddress,
-  hideAddressModal
+  handleToggleAddressModal,
+  handleCancel
 }) => (
   <div className="modal-content">
     <div>
@@ -27,7 +27,7 @@ const AddressModal = ({
     <span className="modal-title">Edit Address</span>
     <div
       className="modal-closeButtonContainer"
-      onClick={() => (updateAddress(address), hideAddressModal())}
+      onClick={() => (handleCancel(), handleToggleAddressModal())}
     >
       Close
       <button className="modal-closeButton">x</button>
@@ -35,13 +35,13 @@ const AddressModal = ({
     <div className="modal-bottomButtons">
       <div
         className="modal-cancelButton"
-        onClick={() => (updateAddress(address), hideAddressModal())}
+        onClick={() => (handleCancel(), handleToggleAddressModal())}
       >
         Cancel
       </div>
       <div
         className="modal-saveButton"
-        onClick={() => (handleSubmitUpdatedAddress(), hideAddressModal())}
+        onClick={() => (handleSubmitUpdatedAddress(), handleToggleAddressModal())}
       >
         Save
       </div>

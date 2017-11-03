@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateFavorites, showFavoritesModal, hideFavoritesModal } from '../actions';
+import { updateFavorites, toggleFavoritesModal } from '../actions';
 import Modal from './Modal';
 import FavoritesModal from './FavoritesModal';
 
@@ -8,24 +8,19 @@ class Favorites extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      favorites: []
+      favorites: [...this.props.favorites]
     };
-    this.handleSubmitUpdatedFavorites = this.handleSubmitUpdatedFavorites.bind(this);
+    this.handleToggleFavoritesModal = this.handleToggleFavoritesModal.bind(this);
   }
-  componentWillReceiveProps() {
-    this.setState({
-      favorites: this.props.favorites
-    });
-  }
-  handleSubmitUpdatedFavorites(favorites) {
-    this.props.updateFavorites(favorites);
+  handleToggleFavoritesModal() {
+    this.props.toggleFavoritesModal(!this.props.displayFavoritesModal);
   }
   render() {
     return (
       <div className="component-container">
         <div className="component-wrapper">
           <div className="component-details">
-            <span className="component-title">Favorites</span>
+            <span className="component-title">Favorite Motorcycles</span>
 
             {this.props.favorites.length === 0 ? (
               <span className="component-noneAdded">None Added</span>
@@ -40,9 +35,9 @@ class Favorites extends React.Component {
           <div>
             <button
               className="component-editButton"
-              onClick={() => this.props.showFavoritesModal()}
+              onClick={() => this.handleToggleFavoritesModal()}
             >
-              Edit Favorites
+              Edit Motorcyles
             </button>
           </div>
         </div>
@@ -50,8 +45,8 @@ class Favorites extends React.Component {
           <Modal>
             <FavoritesModal
               favorites={this.props.favorites}
-              hideFavoritesModal={this.props.hideFavoritesModal}
               updateFavorites={this.props.updateFavorites}
+              handleToggleFavoritesModal={this.handleToggleFavoritesModal}
             />
           </Modal>
         )}
@@ -66,8 +61,7 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
   updateFavorites: favorites => dispatch(updateFavorites(favorites)),
-  showFavoritesModal: () => dispatch(showFavoritesModal()),
-  hideFavoritesModal: () => dispatch(hideFavoritesModal())
+  toggleFavoritesModal: boolean => dispatch(toggleFavoritesModal(boolean))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Favorites);

@@ -4,7 +4,7 @@ const NameModal = ({
   name,
   handleUpdateName,
   handleSubmitUpdatedName,
-  hideNameModal,
+  handleToggleNameModal,
   handleCancel
 }) => (
   <div className="modal-content">
@@ -14,17 +14,20 @@ const NameModal = ({
     </div>
 
     <span className="modal-title">Edit Name</span>
-    <div className="modal-closeButtonContainer" onClick={() => hideNameModal()}>
+    <div
+      className="modal-closeButtonContainer"
+      onClick={() => (handleCancel(), handleToggleNameModal())}
+    >
       Close
       <button className="modal-closeButton">x</button>
     </div>
     <div className="modal-bottomButtons">
-      <div className="modal-cancelButton" onClick={() => (handleCancel(), hideNameModal())}>
+      <div className="modal-cancelButton" onClick={() => (handleCancel(), handleToggleNameModal())}>
         Cancel
       </div>
       <div
         className="modal-saveButton"
-        onClick={() => (handleSubmitUpdatedName(), hideNameModal())}
+        onClick={() => (handleSubmitUpdatedName(), handleToggleNameModal())}
       >
         Save
       </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateAddress, showAddressModal, hideAddressModal } from '../actions';
+import { updateAddress, toggleAddressModal } from '../actions';
 import Modal from './Modal';
 import AddressModal from './AddressModal';
 
@@ -10,6 +10,8 @@ class Address extends React.Component {
     this.state = { ...this.props.adddress };
     this.handleUpdateAddress = this.handleUpdateAddress.bind(this);
     this.handleSubmitUpdatedAddress = this.handleSubmitUpdatedAddress.bind(this);
+    this.handleToggleAddressModal = this.handleToggleAddressModal.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
   // updates the specific address line in the component's state
   handleUpdateAddress(e, line) {
@@ -21,6 +23,14 @@ class Address extends React.Component {
   handleSubmitUpdatedAddress() {
     this.props.updateAddress({ ...this.state });
   }
+
+  handleToggleAddressModal() {
+    this.props.toggleAddressModal(!this.props.displayAddressModal);
+  }
+  // if user cancels after changing address in modal, this resets this components state to the store's address
+  handleCancel() {
+    this.setState({ ...this.props.address });
+  }
   render() {
     return (
       <div className="component-container">
@@ -31,7 +41,10 @@ class Address extends React.Component {
             <span className="component-text">{this.props.address.line2}</span>
           </div>
           <div>
-            <button className="component-editButton" onClick={() => this.props.showAddressModal()}>
+            <button
+              className="component-editButton"
+              onClick={() => this.handleToggleAddressModal()}
+            >
               Edit Address
             </button>
           </div>
@@ -40,10 +53,10 @@ class Address extends React.Component {
           <Modal>
             <AddressModal
               address={this.props.address}
-              updateAddress={this.props.updateAddress}
               handleUpdateAddress={this.handleUpdateAddress}
               handleSubmitUpdatedAddress={this.handleSubmitUpdatedAddress}
-              hideAddressModal={this.props.hideAddressModal}
+              handleToggleAddressModal={this.handleToggleAddressModal}
+              handleCancel={this.handleCancel}
             />
           </Modal>
         )}
@@ -58,8 +71,7 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
   updateAddress: address => dispatch(updateAddress(address)),
-  showAddressModal: () => dispatch(showAddressModal()),
-  hideAddressModal: () => dispatch(hideAddressModal())
+  toggleAddressModal: boolean => dispatch(toggleAddressModal(boolean))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Address);

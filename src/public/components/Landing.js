@@ -15,8 +15,8 @@ class Landing extends React.Component {
   render() {
     return (
       <div className="landing-container">
-        <div className="landing-header">Yup</div>
-        <span className="landing-settingsTitle">Yup Settings</span>
+        <div className="landing-header">Motorcycle Magazine</div>
+        <span className="landing-settingsTitle">Motorcycle Magazine Settings</span>
         <Name />
         <Address />
         <Favorites />
