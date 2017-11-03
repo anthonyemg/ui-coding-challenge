@@ -10,15 +10,15 @@ class Favorites extends React.Component {
   }
   render() {
     return (
-      <div className="favorites-container">
-        <div className="favorites-wrapper">
-          <div className="favorites-details">
-            <span className="favorites-containerTitle">Favorites</span>
-            <span>None added</span>
+      <div className="component-container">
+        <div className="component-wrapper">
+          <div className="component-details">
+            <span className="component-title">Favorites</span>
+            <span className="component-text">None added</span>
           </div>
           <div>
             <button
-              className="favorites-editButton"
+              className="component-editButton"
               onClick={() => this.props.showFavoritesModal()}
             >
               Edit Favorites

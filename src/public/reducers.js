@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 
 const displayNameModal = (state = false, action) => {
-  console.log(action);
   switch (action.type) {
     case 'SHOW_NAME_MODAL':
       return action.payload;
@@ -13,7 +12,6 @@ const displayNameModal = (state = false, action) => {
 };
 
 const displayAddressModal = (state = false, action) => {
-  console.log(action);
   switch (action.type) {
     case 'SHOW_ADDRESS_MODAL':
       return action.payload;
@@ -25,7 +23,6 @@ const displayAddressModal = (state = false, action) => {
 };
 
 const displayFavoritesModal = (state = false, action) => {
-  console.log(action);
   switch (action.type) {
     case 'SHOW_FAVORITES_MODAL':
       return action.payload;

@@ -9,17 +9,16 @@ class Name extends React.Component {
     super(props);
   }
   render() {
-    console.log('wooo', this.props.displayNameModal);
     return (
-      <div className="name-container">
-        <div className="name-wrapper">
-          <div className="name-details">
-            <span className="name-containerTitle">Name</span>
-            <span>Tony</span>
+      <div className="component-container">
+        <div className="component-wrapper">
+          <div className="component-details">
+            <span className="component-title">Name</span>
+            <span className="component-text">Tony</span>
           </div>
           <div>
             <button
-              className="name-editButton"
+              className="component-editButton"
               onClick={() => this.props.showNameModal()}
             >
               Edit Name
