@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { showModal, hideModal } from '../actions';
+import { showFavoritesModal, hideFavoritesModal } from '../actions';
 import Modal from './Modal';
+import FavoritesModal from './FavoritesModal';
 
 class Favorites extends React.Component {
   constructor(props) {
@@ -18,24 +19,30 @@ class Favorites extends React.Component {
           <div>
             <button
               className="favorites-editButton"
-              onClick={() => this.props.showModal()}
+              onClick={() => this.props.showFavoritesModal()}
             >
               Edit Favorites
             </button>
           </div>
         </div>
-        {this.props.displayModal ? <Modal /> : ''}
+        {this.props.displayFavoritesModal ? (
+          <Modal>
+            <FavoritesModal
+              hideFavoritesModal={this.props.hideFavoritesModal}
+            />
+          </Modal>
+        ) : null}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  displayModal: state.displayModal
+  displayFavoritesModal: state.displayFavoritesModal
 });
 const mapDispatchToProps = dispatch => ({
-  showModal: () => dispatch(showModal()),
-  hideModal: () => dispatch(hideModal())
+  showFavoritesModal: () => dispatch(showFavoritesModal()),
+  hideFavoritesModal: () => dispatch(hideFavoritesModal())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Favorites);

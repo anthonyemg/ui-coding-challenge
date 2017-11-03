@@ -1,13 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { showModal, hideModal } from '../actions';
+import { showNameModal, hideNameModal } from '../actions';
 import Modal from './Modal';
+import NameModal from './NameModal';
 
 class Name extends React.Component {
   constructor(props) {
     super(props);
   }
   render() {
+    console.log('wooo', this.props.displayNameModal);
     return (
       <div className="name-container">
         <div className="name-wrapper">
@@ -18,24 +20,28 @@ class Name extends React.Component {
           <div>
             <button
               className="name-editButton"
-              onClick={() => this.props.showModal()}
+              onClick={() => this.props.showNameModal()}
             >
               Edit Name
             </button>
           </div>
         </div>
-        {this.props.displayModal ? <Modal /> : ''}
+        {this.props.displayNameModal && (
+          <Modal>
+            <NameModal hideNameModal={this.props.hideNameModal} />
+          </Modal>
+        )}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  displayModal: state.displayModal
+  displayNameModal: state.displayNameModal
 });
 const mapDispatchToProps = dispatch => ({
-  showModal: () => dispatch(showModal()),
-  hideModal: () => dispatch(hideModal())
+  showNameModal: () => dispatch(showNameModal()),
+  hideNameModal: () => dispatch(hideNameModal())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Name);

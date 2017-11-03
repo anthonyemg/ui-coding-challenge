@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { showModal, hideModal } from '../actions';
+import { showAddressModal, hideAddressModal } from '../actions';
 import Modal from './Modal';
+import AddressModal from './AddressModal';
 
 class Address extends React.Component {
   constructor(props) {
@@ -19,24 +20,28 @@ class Address extends React.Component {
           <div>
             <button
               className="address-editButton"
-              onClick={() => this.props.showModal()}
+              onClick={() => this.props.showAddressModal()}
             >
               Edit Address
             </button>
           </div>
         </div>
-        {this.props.displayModal ? <Modal /> : ''}
+        {this.props.displayAddressModal ? (
+          <Modal>
+            <AddressModal hideAddressModal={this.props.hideAddressModal} />
+          </Modal>
+        ) : null}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  displayModal: state.displayModal
+  displayAddressModal: state.displayAddressModal
 });
 const mapDispatchToProps = dispatch => ({
-  showModal: () => dispatch(showModal()),
-  hideModal: () => dispatch(hideModal())
+  showAddressModal: () => dispatch(showAddressModal()),
+  hideAddressModal: () => dispatch(hideAddressModal())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Address);

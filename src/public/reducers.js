@@ -1,11 +1,35 @@
 import { combineReducers } from 'redux';
 
-const displayModal = (state = false, action) => {
+const displayNameModal = (state = false, action) => {
   console.log(action);
   switch (action.type) {
-    case 'SHOW_MODAL':
+    case 'SHOW_NAME_MODAL':
       return action.payload;
-    case 'HIDE_MODAL':
+    case 'HIDE_NAME_MODAL':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const displayAddressModal = (state = false, action) => {
+  console.log(action);
+  switch (action.type) {
+    case 'SHOW_ADDRESS_MODAL':
+      return action.payload;
+    case 'HIDE_ADDRESS_MODAL':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const displayFavoritesModal = (state = false, action) => {
+  console.log(action);
+  switch (action.type) {
+    case 'SHOW_FAVORITES_MODAL':
+      return action.payload;
+    case 'HIDE_FAVORITES_MODAL':
       return action.payload;
     default:
       return state;
@@ -13,7 +37,9 @@ const displayModal = (state = false, action) => {
 };
 
 const rootReducer = combineReducers({
-  displayModal
+  displayNameModal,
+  displayAddressModal,
+  displayFavoritesModal
 });
 
 export default rootReducer;
