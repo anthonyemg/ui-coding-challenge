@@ -1,12 +1,42 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { showAddressModal, hideAddressModal } from '../actions';
+import {
+  updateAddress,
+  updateAddressLine1,
+  showAddressModal,
+  hideAddressModal
+} from '../actions';
 import Modal from './Modal';
 import AddressModal from './AddressModal';
 
 class Address extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      updatedAddressLine1: '',
+      updatedAddressLine2: ''
+    };
+    this.handleUpdateAddressLine1 = this.handleUpdateAddressLine1.bind(this);
+    this.handleUpdateAddressLine2 = this.handleUpdateAddressLine2.bind(this);
+    this.handleSubmitUpdatedAddress = this.handleSubmitUpdatedAddress.bind(
+      this
+    );
+  }
+  handleUpdateAddressLine1(e) {
+    this.setState({
+      updatedAddressLine1: e.target.value
+    });
+  }
+  handleUpdateAddressLine2(e) {
+    this.setState({
+      updatedAddressLine2: e.target.value
+    });
+  }
+  handleSubmitUpdatedAddress() {
+    this.props.updateAddress({
+      line1: this.state.updatedAddressLine1,
+      line2: this.state.updatedAddressLine2
+    });
   }
   render() {
     return (
@@ -14,8 +44,8 @@ class Address extends React.Component {
         <div className="component-wrapper">
           <div className="component-details">
             <span className="component-title">Address</span>
-            <span className="component-text">123 Bowl Lane</span>
-            <span className="component-text">NY, NY 10021</span>
+            <span className="component-text">{this.props.address.line1}</span>
+            <span className="component-text">{this.props.address.line2}</span>
           </div>
           <div>
             <button
@@ -28,7 +58,15 @@ class Address extends React.Component {
         </div>
         {this.props.displayAddressModal ? (
           <Modal>
-            <AddressModal hideAddressModal={this.props.hideAddressModal} />
+            <AddressModal
+              address={this.props.address}
+              updateAddress={this.props.updateAddress}
+              handleUpdateAddress={this.handleUpdateAddress}
+              handleUpdateAddressLine1={this.handleUpdateAddressLine1}
+              handleUpdateAddressLine2={this.handleUpdateAddressLine2}
+              handleSubmitUpdatedAddress={this.handleSubmitUpdatedAddress}
+              hideAddressModal={this.props.hideAddressModal}
+            />
           </Modal>
         ) : null}
       </div>
@@ -37,9 +75,11 @@ class Address extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  address: state.address,
   displayAddressModal: state.displayAddressModal
 });
 const mapDispatchToProps = dispatch => ({
+  updateAddress: address => dispatch(updateAddress(address)),
   showAddressModal: () => dispatch(showAddressModal()),
   hideAddressModal: () => dispatch(hideAddressModal())
 });

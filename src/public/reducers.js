@@ -1,5 +1,26 @@
 import { combineReducers } from 'redux';
 
+const name = (state = 'Anthony G', action) => {
+  switch (action.type) {
+    case 'UPDATE_NAME':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const address = (
+  state = { line1: '123 W Ave', line2: 'NY, NY 10000' },
+  action
+) => {
+  switch (action.type) {
+    case 'UPDATE_ADDRESS':
+      return { ...state, ...action.payload };
+    default:
+      return state;
+  }
+};
+
 const displayNameModal = (state = false, action) => {
   switch (action.type) {
     case 'SHOW_NAME_MODAL':
@@ -34,6 +55,8 @@ const displayFavoritesModal = (state = false, action) => {
 };
 
 const rootReducer = combineReducers({
+  name,
+  address,
   displayNameModal,
   displayAddressModal,
   displayFavoritesModal

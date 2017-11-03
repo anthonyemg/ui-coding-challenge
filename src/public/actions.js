@@ -1,3 +1,11 @@
+export function updateName(name) {
+  return { type: 'UPDATE_NAME', payload: name };
+}
+
+export function updateAddress(address) {
+  return { type: 'UPDATE_ADDRESS', payload: address };
+}
+
 export function showNameModal() {
   return { type: 'SHOW_NAME_MODAL', payload: true };
 }

@@ -1,15 +1,36 @@
 import React from 'react';
 
-const NameModal = ({ hideNameModal }) => (
-  <div>
-    NameModal
+const NameModal = ({
+  name,
+  handleUpdateName,
+  handleSubmitUpdatedName,
+  hideNameModal
+}) => (
+  <div className="modal-content">
+    <div>
+      <span>Name</span>
+      <input
+        className="modal-input"
+        defaultValue={name}
+        onChange={handleUpdateName}
+      />
+    </div>
+
+    <span className="modal-title">Edit Name</span>
     <div className="modal-closeButtonContainer" onClick={() => hideNameModal()}>
       Close
       <button className="modal-closeButton">x</button>
     </div>
     <div className="modal-bottomButtons">
-      <div className="modal-cancelButton">Cancel</div>
-      <div className="modal-saveButton">Save</div>
+      <div className="modal-cancelButton" onClick={() => hideNameModal()}>
+        Cancel
+      </div>
+      <div
+        className="modal-saveButton"
+        onClick={() => (handleSubmitUpdatedName(), hideNameModal())}
+      >
+        Save
+      </div>
     </div>
   </div>
 );
