@@ -12,6 +12,7 @@ class Name extends React.Component {
     };
     this.handleUpdateName = this.handleUpdateName.bind(this);
     this.handleSubmitUpdatedName = this.handleSubmitUpdatedName.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
   handleUpdateName(e) {
     this.setState({
@@ -20,6 +21,11 @@ class Name extends React.Component {
   }
   handleSubmitUpdatedName() {
     this.props.updateName(this.state.updatedName);
+  }
+  handleCancel() {
+    this.setState({
+      updatedName: this.props.name
+    });
   }
   render() {
     return (
@@ -30,10 +36,7 @@ class Name extends React.Component {
             <span className="component-text">{this.props.name}</span>
           </div>
           <div>
-            <button
-              className="component-editButton"
-              onClick={() => this.props.showNameModal()}
-            >
+            <button className="component-editButton" onClick={() => this.props.showNameModal()}>
               Edit Name
             </button>
           </div>
@@ -46,6 +49,7 @@ class Name extends React.Component {
               handleUpdateName={this.handleUpdateName}
               handleSubmitUpdatedName={this.handleSubmitUpdatedName}
               hideNameModal={this.props.hideNameModal}
+              handleCancel={this.handleCancel}
             />
           </Modal>
         )}

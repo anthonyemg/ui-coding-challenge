@@ -1,11 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  updateAddress,
-  updateAddressLine1,
-  showAddressModal,
-  hideAddressModal
-} from '../actions';
+import { updateAddress, updateAddressLine1, showAddressModal, hideAddressModal } from '../actions';
 import Modal from './Modal';
 import AddressModal from './AddressModal';
 
@@ -18,9 +13,8 @@ class Address extends React.Component {
     };
     this.handleUpdateAddressLine1 = this.handleUpdateAddressLine1.bind(this);
     this.handleUpdateAddressLine2 = this.handleUpdateAddressLine2.bind(this);
-    this.handleSubmitUpdatedAddress = this.handleSubmitUpdatedAddress.bind(
-      this
-    );
+    this.handleSubmitUpdatedAddress = this.handleSubmitUpdatedAddress.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
   handleUpdateAddressLine1(e) {
     this.setState({
@@ -38,6 +32,12 @@ class Address extends React.Component {
       line2: this.state.updatedAddressLine2
     });
   }
+  handleCancel() {
+    this.setState({
+      updatedAddressLine1: this.props.address.line1,
+      updatedAddressLine2: this.props.address.line2
+    });
+  }
   render() {
     return (
       <div className="component-container">
@@ -48,10 +48,7 @@ class Address extends React.Component {
             <span className="component-text">{this.props.address.line2}</span>
           </div>
           <div>
-            <button
-              className="component-editButton"
-              onClick={() => this.props.showAddressModal()}
-            >
+            <button className="component-editButton" onClick={() => this.props.showAddressModal()}>
               Edit Address
             </button>
           </div>
@@ -66,6 +63,7 @@ class Address extends React.Component {
               handleUpdateAddressLine2={this.handleUpdateAddressLine2}
               handleSubmitUpdatedAddress={this.handleSubmitUpdatedAddress}
               hideAddressModal={this.props.hideAddressModal}
+              handleCancel={this.handleCancel}
             />
           </Modal>
         ) : null}

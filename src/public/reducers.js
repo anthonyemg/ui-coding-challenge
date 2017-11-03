@@ -9,13 +9,19 @@ const name = (state = 'Anthony G', action) => {
   }
 };
 
-const address = (
-  state = { line1: '123 W Ave', line2: 'NY, NY 10000' },
-  action
-) => {
+const address = (state = { line1: '123 W Ave', line2: 'NY, NY 10000' }, action) => {
   switch (action.type) {
     case 'UPDATE_ADDRESS':
       return { ...state, ...action.payload };
+    default:
+      return state;
+  }
+};
+
+const favorites = (state = ['asfsdf'], action) => {
+  switch (action.type) {
+    case 'UPDATE_FAVORITES':
+      return action.payload;
     default:
       return state;
   }
@@ -57,6 +63,7 @@ const displayFavoritesModal = (state = false, action) => {
 const rootReducer = combineReducers({
   name,
   address,
+  favorites,
   displayNameModal,
   displayAddressModal,
   displayFavoritesModal

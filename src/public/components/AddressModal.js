@@ -5,7 +5,8 @@ const AddressModal = ({
   handleUpdateAddressLine1,
   handleUpdateAddressLine2,
   handleSubmitUpdatedAddress,
-  hideAddressModal
+  hideAddressModal,
+  handleCancel
 }) => (
   <div className="modal-content">
     <div>
@@ -26,15 +27,12 @@ const AddressModal = ({
     </div>
 
     <span className="modal-title">Edit Address</span>
-    <div
-      className="modal-closeButtonContainer"
-      onClick={() => hideAddressModal()}
-    >
+    <div className="modal-closeButtonContainer" onClick={() => hideAddressModal()}>
       Close
       <button className="modal-closeButton">x</button>
     </div>
     <div className="modal-bottomButtons">
-      <div className="modal-cancelButton" onClick={() => hideAddressModal()}>
+      <div className="modal-cancelButton" onClick={() => (handleCancel(), hideAddressModal())}>
         Cancel
       </div>
       <div

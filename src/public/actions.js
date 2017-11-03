@@ -6,6 +6,10 @@ export function updateAddress(address) {
   return { type: 'UPDATE_ADDRESS', payload: address };
 }
 
+export function updateFavorites(favorites) {
+  return { type: 'UPDATE_FAVORITES', payload: favorites };
+}
+
 export function showNameModal() {
   return { type: 'SHOW_NAME_MODAL', payload: true };
 }

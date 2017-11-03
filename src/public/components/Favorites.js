@@ -1,12 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { showFavoritesModal, hideFavoritesModal } from '../actions';
+import { updateFavorites, showFavoritesModal, hideFavoritesModal } from '../actions';
 import Modal from './Modal';
 import FavoritesModal from './FavoritesModal';
 
 class Favorites extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      favorites: []
+    };
+    this.handleSubmitUpdatedFavorites = this.handleSubmitUpdatedFavorites.bind(this);
+  }
+  componentWillReceiveProps() {
+    this.setState({
+      favorites: this.props.favorites
+    });
+  }
+  handleSubmitUpdatedFavorites(favorites) {
+    this.props.updateFavorites(favorites);
   }
   render() {
     return (
@@ -14,7 +26,11 @@ class Favorites extends React.Component {
         <div className="component-wrapper">
           <div className="component-details">
             <span className="component-title">Favorites</span>
-            <span className="component-text">None added</span>
+            {this.props.favorites.map((favorite, index) => (
+              <span className="component-text" key={index}>
+                {favorite}
+              </span>
+            ))}
           </div>
           <div>
             <button
@@ -25,22 +41,26 @@ class Favorites extends React.Component {
             </button>
           </div>
         </div>
-        {this.props.displayFavoritesModal ? (
+        {this.props.displayFavoritesModal && (
           <Modal>
             <FavoritesModal
+              favorites={this.props.favorites}
               hideFavoritesModal={this.props.hideFavoritesModal}
+              updateFavorites={this.props.updateFavorites}
             />
           </Modal>
-        ) : null}
+        )}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
+  favorites: state.favorites,
   displayFavoritesModal: state.displayFavoritesModal
 });
 const mapDispatchToProps = dispatch => ({
+  updateFavorites: favorites => dispatch(updateFavorites(favorites)),
   showFavoritesModal: () => dispatch(showFavoritesModal()),
   hideFavoritesModal: () => dispatch(hideFavoritesModal())
 });
