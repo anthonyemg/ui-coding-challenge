@@ -10,6 +10,7 @@ const name = (state = 'Anthony G', action) => {
 };
 
 const address = (state = { line1: '123 W Ave', line2: 'NY, NY 10000' }, action) => {
+  console.log(action);
   switch (action.type) {
     case 'UPDATE_ADDRESS':
       return { ...state, ...action.payload };
@@ -18,7 +19,7 @@ const address = (state = { line1: '123 W Ave', line2: 'NY, NY 10000' }, action) 
   }
 };
 
-const favorites = (state = ['asfsdf'], action) => {
+const favorites = (state = [], action) => {
   switch (action.type) {
     case 'UPDATE_FAVORITES':
       return action.payload;

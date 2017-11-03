@@ -26,11 +26,16 @@ class Favorites extends React.Component {
         <div className="component-wrapper">
           <div className="component-details">
             <span className="component-title">Favorites</span>
-            {this.props.favorites.map((favorite, index) => (
-              <span className="component-text" key={index}>
-                {favorite}
-              </span>
-            ))}
+
+            {this.props.favorites.length === 0 ? (
+              <span className="component-noneAdded">None Added</span>
+            ) : (
+              this.props.favorites.map((favorite, index) => (
+                <span className="component-text" key={index}>
+                  {index + 1}. {favorite}
+                </span>
+              ))
+            )}
           </div>
           <div>
             <button

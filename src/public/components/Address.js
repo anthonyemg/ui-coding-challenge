@@ -1,42 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateAddress, updateAddressLine1, showAddressModal, hideAddressModal } from '../actions';
+import { updateAddress, showAddressModal, hideAddressModal } from '../actions';
 import Modal from './Modal';
 import AddressModal from './AddressModal';
 
 class Address extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      updatedAddressLine1: '',
-      updatedAddressLine2: ''
-    };
-    this.handleUpdateAddressLine1 = this.handleUpdateAddressLine1.bind(this);
-    this.handleUpdateAddressLine2 = this.handleUpdateAddressLine2.bind(this);
+    this.state = { ...this.props.adddress };
+    this.handleUpdateAddress = this.handleUpdateAddress.bind(this);
     this.handleSubmitUpdatedAddress = this.handleSubmitUpdatedAddress.bind(this);
-    this.handleCancel = this.handleCancel.bind(this);
   }
-  handleUpdateAddressLine1(e) {
-    this.setState({
-      updatedAddressLine1: e.target.value
-    });
+  // updates the specific address line in the component's state
+  handleUpdateAddress(e, line) {
+    const newState = {};
+    newState[line] = e.target.value;
+    this.setState(newState);
   }
-  handleUpdateAddressLine2(e) {
-    this.setState({
-      updatedAddressLine2: e.target.value
-    });
-  }
+  // updates the store's address as long as neither of the input fields are not empty, if had more time I'd add a warning to make sure both fields are completed
   handleSubmitUpdatedAddress() {
-    this.props.updateAddress({
-      line1: this.state.updatedAddressLine1,
-      line2: this.state.updatedAddressLine2
-    });
-  }
-  handleCancel() {
-    this.setState({
-      updatedAddressLine1: this.props.address.line1,
-      updatedAddressLine2: this.props.address.line2
-    });
+    this.props.updateAddress({ ...this.state });
   }
   render() {
     return (
@@ -53,20 +36,17 @@ class Address extends React.Component {
             </button>
           </div>
         </div>
-        {this.props.displayAddressModal ? (
+        {this.props.displayAddressModal && (
           <Modal>
             <AddressModal
               address={this.props.address}
               updateAddress={this.props.updateAddress}
               handleUpdateAddress={this.handleUpdateAddress}
-              handleUpdateAddressLine1={this.handleUpdateAddressLine1}
-              handleUpdateAddressLine2={this.handleUpdateAddressLine2}
               handleSubmitUpdatedAddress={this.handleSubmitUpdatedAddress}
               hideAddressModal={this.props.hideAddressModal}
-              handleCancel={this.handleCancel}
             />
           </Modal>
-        ) : null}
+        )}
       </div>
     );
   }

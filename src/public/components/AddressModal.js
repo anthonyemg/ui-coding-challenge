@@ -2,11 +2,10 @@ import React from 'react';
 
 const AddressModal = ({
   address,
-  handleUpdateAddressLine1,
-  handleUpdateAddressLine2,
+  updateAddress,
+  handleUpdateAddress,
   handleSubmitUpdatedAddress,
-  hideAddressModal,
-  handleCancel
+  hideAddressModal
 }) => (
   <div className="modal-content">
     <div>
@@ -14,7 +13,7 @@ const AddressModal = ({
       <input
         className="modal-input"
         defaultValue={address.line1}
-        onChange={handleUpdateAddressLine1}
+        onChange={e => handleUpdateAddress(e, 'line1')}
       />
     </div>
     <div>
@@ -22,17 +21,22 @@ const AddressModal = ({
       <input
         className="modal-input"
         defaultValue={address.line2}
-        onChange={handleUpdateAddressLine2}
+        onChange={e => handleUpdateAddress(e, 'line2')}
       />
     </div>
-
     <span className="modal-title">Edit Address</span>
-    <div className="modal-closeButtonContainer" onClick={() => hideAddressModal()}>
+    <div
+      className="modal-closeButtonContainer"
+      onClick={() => (updateAddress(address), hideAddressModal())}
+    >
       Close
       <button className="modal-closeButton">x</button>
     </div>
     <div className="modal-bottomButtons">
-      <div className="modal-cancelButton" onClick={() => (handleCancel(), hideAddressModal())}>
+      <div
+        className="modal-cancelButton"
+        onClick={() => (updateAddress(address), hideAddressModal())}
+      >
         Cancel
       </div>
       <div

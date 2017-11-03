@@ -59,6 +59,11 @@ body {
   padding-bottom: 10px;
 }
 
+.component-noneAdded {
+  color: rgb(180, 180, 180);
+  font-size: 18px;
+}
+
 .component-editButton {
   height: 50px;
   width: 140px;
@@ -96,9 +101,17 @@ body {
 
 .modal-content {
   width: 100%;
+  height: 145px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.modal-contentFavorites {
+  display: flex;
+  flex-direction: column;
 }
 
 .modal-input {
