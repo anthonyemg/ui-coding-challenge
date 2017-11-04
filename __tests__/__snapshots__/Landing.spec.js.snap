@@ -31,7 +31,7 @@ exports[`the Landing component renders correctly 1`] = `
         <span
           className="component-text"
         >
-          Anthony G
+          
         </span>
       </div>
       <div>
@@ -61,12 +61,12 @@ exports[`the Landing component renders correctly 1`] = `
         <span
           className="component-text"
         >
-          123 W Ave
+          
         </span>
         <span
           className="component-text"
         >
-          NY, NY 10000
+          
         </span>
       </div>
       <div>
