@@ -20,6 +20,7 @@ class Name extends React.Component {
     this.handleSubmitUpdatedName = this.handleSubmitUpdatedName.bind(this);
     this.handleToggleNameModal = this.handleToggleNameModal.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
+    this.handlePost = this.handlePost.bind(this);
   }
   // this updates the component's state with the input field's contents from the modal
   handleUpdateName(e) {
@@ -29,7 +30,10 @@ class Name extends React.Component {
   }
   // I attempted to dispatch the updateName action from the modal but there was a delay in rendering from this component and the solution was calling it from here instead
   handleSubmitUpdatedName() {
-    this.props.updateName(this.state.updatedName);
+    if (this.state.updatedName.length !== 0) {
+      this.props.updateName(this.state.updatedName);
+      this.handlePost(this.state.updatedName);
+    }
   }
   handleToggleNameModal() {
     this.props.toggleNameModal(!this.props.displayNameModal);
@@ -39,6 +43,14 @@ class Name extends React.Component {
     this.setState({
       updatedName: this.props.name
     });
+  }
+  // updating our database with the updated name
+  handlePost(updatedName) {
+    fetch('/database', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: updatedName })
+    }).catch(err => console.log(err));
   }
   render() {
     return (

@@ -6,18 +6,22 @@ import Modal from './Modal';
 import AddressModal from './AddressModal';
 
 const propTypes = {
-  address: PropTypes.object.isRequired,
+  address: PropTypes.object,
   displayAddressModal: PropTypes.bool.isRequired
 };
 
 class Address extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { ...this.props.adddress };
+    this.state = {
+      line1: this.props.address.line1,
+      line2: this.props.address.line2
+    };
     this.handleUpdateAddress = this.handleUpdateAddress.bind(this);
     this.handleSubmitUpdatedAddress = this.handleSubmitUpdatedAddress.bind(this);
     this.handleToggleAddressModal = this.handleToggleAddressModal.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
+    this.handlePost = this.handlePost.bind(this);
   }
   // updates the specific address line in the component's state
   handleUpdateAddress(e, line) {
@@ -27,7 +31,10 @@ class Address extends React.Component {
   }
   // updates the store's address as long as neither of the input fields are not empty, if had more time I'd add a warning to make sure both fields are completed
   handleSubmitUpdatedAddress() {
-    this.props.updateAddress({ ...this.state });
+    if (this.state.line1 !== '' || this.state.line2 !== '') {
+      this.props.updateAddress({ ...this.state });
+      this.handlePost({ ...this.state });
+    }
   }
 
   handleToggleAddressModal() {
@@ -36,6 +43,14 @@ class Address extends React.Component {
   // if user cancels after changing address in modal, this resets this components state to the store's address
   handleCancel() {
     this.setState({ ...this.props.address });
+  }
+  // updating our database with the updated address
+  handlePost(updatedAddress) {
+    fetch('/database', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ address: updatedAddress })
+    }).catch(err => console.log(err));
   }
   render() {
     return (

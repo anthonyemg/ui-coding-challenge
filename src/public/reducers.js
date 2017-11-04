@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-const name = (state = 'Anthony G', action) => {
+const name = (state = '', action) => {
   switch (action.type) {
     case 'UPDATE_NAME':
       return action.payload;
@@ -18,7 +18,7 @@ const displayNameModal = (state = false, action) => {
   }
 };
 
-const address = (state = { line1: '123 W Ave', line2: 'NY, NY 10000' }, action) => {
+const address = (state = { line1: '', line2: '' }, action) => {
   switch (action.type) {
     case 'UPDATE_ADDRESS':
       return { ...state, ...action.payload };

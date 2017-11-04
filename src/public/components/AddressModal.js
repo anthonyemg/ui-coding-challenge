@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  address: PropTypes.object.isRequired,
+  address: PropTypes.object,
   handleUpdateAddress: PropTypes.func.isRequired,
   handleSubmitUpdatedAddress: PropTypes.func.isRequired,
   handleToggleAddressModal: PropTypes.func.isRequired,

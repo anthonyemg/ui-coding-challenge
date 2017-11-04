@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  favorites: PropTypes.array.isRequired,
+  favorites: PropTypes.array,
   updateFavorites: PropTypes.func.isRequired,
   handleToggleFavoritesModal: PropTypes.func.isRequired
 };
@@ -17,6 +17,7 @@ class FavoritesModal extends React.Component {
     this.handleFavoritesUpdate = this.handleFavoritesUpdate.bind(this);
     this.handleAddFavorite = this.handleAddFavorite.bind(this);
     this.handleSubmitUpdatedFavorites = this.handleSubmitUpdatedFavorites.bind(this);
+    this.handlePost = this.handlePost.bind(this);
   }
   // if there are no favorites when the modal renders handleAddFavorite is called to add a empty favorite
   componentWillMount() {
@@ -44,7 +45,16 @@ class FavoritesModal extends React.Component {
   handleSubmitUpdatedFavorites() {
     if (this.state.modalFavorites[0] !== '') {
       this.props.updateFavorites(this.state.modalFavorites);
+      this.handlePost(this.state.modalFavorites);
     }
+  }
+  // updating our database with the updated favorites
+  handlePost(updatedFavorites) {
+    fetch('/database', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ favorites: updatedFavorites })
+    }).catch(err => console.log(err));
   }
   render() {
     return (
