@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`the NameModal component renders correctly 1`] = `
+<div
+  className="modal-content"
+>
+  <div>
+    <span>
+      Name
+    </span>
+    <input
+      className="modal-input"
+      defaultValue={undefined}
+      onChange={undefined}
+    />
+  </div>
+  <span
+    className="modal-title"
+  >
+    Edit Name
+  </span>
+  <div
+    className="modal-closeButtonContainer"
+    onClick={[Function]}
+  >
+    Close
+    <button
+      className="modal-closeButton"
+    >
+      x
+    </button>
+  </div>
+  <div
+    className="modal-bottomButtons"
+  >
+    <div
+      className="modal-cancelButton"
+      onClick={[Function]}
+    >
+      Cancel
+    </div>
+    <div
+      className="modal-saveButton"
+      onClick={[Function]}
+    >
+      Save
+    </div>
+  </div>
+</div>
+`;

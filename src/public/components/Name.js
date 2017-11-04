@@ -1,8 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { updateName, toggleNameModal } from '../actions';
 import Modal from './Modal';
 import NameModal from './NameModal';
+
+const propTypes = {
+  name: PropTypes.string.isRequired,
+  displayNameModal: PropTypes.bool.isRequired
+};
 
 class Name extends React.Component {
   constructor(props) {
@@ -63,6 +69,8 @@ class Name extends React.Component {
     );
   }
 }
+
+Name.propTypes = propTypes;
 
 const mapStateToProps = state => ({
   name: state.name,

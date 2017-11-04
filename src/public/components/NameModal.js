@@ -1,4 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  name: PropTypes.string.isRequired,
+  handleUpdateName: PropTypes.func.isRequired,
+  handleSubmitUpdatedName: PropTypes.func.isRequired,
+  handleToggleNameModal: PropTypes.func.isRequired,
+  handleCancel: PropTypes.func.isRequired
+};
 
 const NameModal = ({
   name,
@@ -34,5 +43,7 @@ const NameModal = ({
     </div>
   </div>
 );
+
+NameModal.propTypes = propTypes;
 
 export default NameModal;

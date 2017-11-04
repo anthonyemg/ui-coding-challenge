@@ -1,4 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  favorites: PropTypes.array.isRequired,
+  updateFavorites: PropTypes.func.isRequired,
+  handleToggleFavoritesModal: PropTypes.func.isRequired
+};
 
 // I initially attempted to make this modal stateless like the rest of the modals but I needed this modal to rerender when client added more favorites.
 class FavoritesModal extends React.Component {
@@ -85,5 +92,7 @@ class FavoritesModal extends React.Component {
     );
   }
 }
+
+FavoritesModal.propTypes = propTypes;
 
 export default FavoritesModal;

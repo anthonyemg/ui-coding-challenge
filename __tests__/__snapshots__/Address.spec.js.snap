@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`the Address component renders correctly 1`] = `
+<div
+  className="component-container"
+>
+  <div
+    className="component-wrapper"
+  >
+    <div
+      className="component-details"
+    >
+      <span
+        className="component-title"
+      >
+        Address
+      </span>
+      <span
+        className="component-text"
+      >
+        123 W Ave
+      </span>
+      <span
+        className="component-text"
+      >
+        NY, NY 10000
+      </span>
+    </div>
+    <div>
+      <button
+        className="component-editButton"
+        onClick={[Function]}
+      >
+        Edit Address
+      </button>
+    </div>
+  </div>
+</div>
+`;

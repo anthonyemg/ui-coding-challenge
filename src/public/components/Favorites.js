@@ -1,8 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { updateFavorites, toggleFavoritesModal } from '../actions';
 import Modal from './Modal';
 import FavoritesModal from './FavoritesModal';
+
+const propTypes = {
+  favorites: PropTypes.array.isRequired,
+  displayFavoritesModal: PropTypes.bool.isRequired
+};
 
 class Favorites extends React.Component {
   constructor(props) {
@@ -54,6 +60,8 @@ class Favorites extends React.Component {
     );
   }
 }
+
+Favorites.propTypes = propTypes;
 
 const mapStateToProps = state => ({
   favorites: state.favorites,

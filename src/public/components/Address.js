@@ -1,8 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { updateAddress, toggleAddressModal } from '../actions';
 import Modal from './Modal';
 import AddressModal from './AddressModal';
+
+const propTypes = {
+  address: PropTypes.object.isRequired,
+  displayAddressModal: PropTypes.bool.isRequired
+};
 
 class Address extends React.Component {
   constructor(props) {
@@ -64,6 +70,8 @@ class Address extends React.Component {
     );
   }
 }
+
+Address.propTypes = propTypes;
 
 const mapStateToProps = state => ({
   address: state.address,

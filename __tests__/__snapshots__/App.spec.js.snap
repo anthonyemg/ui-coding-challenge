@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`the App component renders correctly 1`] = `
+<div
+  className="app"
+>
+  <div
+    className="landing-container"
+  >
+    <div
+      className="landing-header"
+    >
+      Motorcycle Magazine
+    </div>
+    <span
+      className="landing-settingsTitle"
+    >
+      Motorcycle Magazine Settings
+    </span>
+    <div
+      className="component-container"
+    >
+      <div
+        className="component-wrapper"
+      >
+        <div
+          className="component-details"
+        >
+          <span
+            className="component-title"
+          >
+            Name
+          </span>
+          <span
+            className="component-text"
+          >
+            Anthony G
+          </span>
+        </div>
+        <div>
+          <button
+            className="component-editButton"
+            onClick={[Function]}
+          >
+            Edit Name
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      className="component-container"
+    >
+      <div
+        className="component-wrapper"
+      >
+        <div
+          className="component-details"
+        >
+          <span
+            className="component-title"
+          >
+            Address
+          </span>
+          <span
+            className="component-text"
+          >
+            123 W Ave
+          </span>
+          <span
+            className="component-text"
+          >
+            NY, NY 10000
+          </span>
+        </div>
+        <div>
+          <button
+            className="component-editButton"
+            onClick={[Function]}
+          >
+            Edit Address
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      className="component-container"
+    >
+      <div
+        className="component-wrapper"
+      >
+        <div
+          className="component-details"
+        >
+          <span
+            className="component-title"
+          >
+            Favorite Motorcycles
+          </span>
+          <span
+            className="component-noneAdded"
+          >
+            None Added
+          </span>
+        </div>
+        <div>
+          <button
+            className="component-editButton"
+            onClick={[Function]}
+          >
+            Edit Motorcyles
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

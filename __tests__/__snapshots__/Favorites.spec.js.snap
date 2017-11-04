@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`the Favorites component renders correctly 1`] = `
+<div
+  className="component-container"
+>
+  <div
+    className="component-wrapper"
+  >
+    <div
+      className="component-details"
+    >
+      <span
+        className="component-title"
+      >
+        Favorite Motorcycles
+      </span>
+      <span
+        className="component-noneAdded"
+      >
+        None Added
+      </span>
+    </div>
+    <div>
+      <button
+        className="component-editButton"
+        onClick={[Function]}
+      >
+        Edit Motorcyles
+      </button>
+    </div>
+  </div>
+</div>
+`;
